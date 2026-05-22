@@ -15,40 +15,63 @@ module.exports = async (req, res) => {
       const $ = cheerio.load(data);
 
       const nombre = $('h1').first().text().trim();
-      const foto = $('img[src*="wp-content/uploads"]').first().attr('src') || '';
-      const categoria = $('ul li').filter((i, el) => {
-        const txt = $(el).text().trim();
-        return txt.length > 0 && txt.length < 40 && txt === txt.toUpperCase();
-      }).first().text().trim();
 
-      const descripcion = $('p').filter((i, el) => {
-        const txt = $(el).text().trim();
-        return txt.length > 50 && !txt.includes('©');
-      }).first().text().trim();
+      // Foto desde og:image meta tag
+      const foto = $('meta[property="og:image"]').attr('content') || '';
 
+      // Categoría: primer li con texto en mayúsculas corto
+      let categoria = '';
+      $('li').each((i, el) => {
+        const txt = $(el).text().trim();
+        if (txt.length > 0 && txt.length < 30 && txt === txt.toUpperCase() && /^[A-ZÁÉÍÓÚÑ\s]+$/.test(txt)) {
+          if (!categoria) categoria = txt;
+        }
+      });
+
+      // Descripción: párrafos con contenido real (más de 80 chars, no copyright)
+      const parrafos = [];
+      $('p').each((i, el) => {
+        const txt = $(el).text().trim();
+        if (txt.length > 80 && !txt.includes('©') && !txt.includes('cookie') && !txt.includes('Privacy')) {
+          parrafos.push(txt);
+        }
+      });
+      const descripcion = parrafos.join('\n\n');
+
+      // Teléfonos
       const telefonos = [];
       $('a[href^="tel:"]').each((i, el) => {
         const tel = $(el).text().trim();
         if (tel && !telefonos.includes(tel)) telefonos.push(tel);
       });
 
+      // Email
       const email = $('a[href^="mailto:"]').first().text().trim();
 
+      // Áreas de práctica
       const areas = [];
       $('a[href*="areas_de_practica"]').each((i, el) => {
         const area = $(el).text().trim();
-        if (area && area !== 'Áreas de práctica') areas.push(area);
+        if (area && area !== 'Áreas de práctica' && !areas.includes(area)) areas.push(area);
       });
 
-      const idiomas = [];
-      $('p, li').each((i, el) => {
-        const txt = $(el).text().trim();
-        if (txt.startsWith('Español') || txt.startsWith('Inglés') || txt.startsWith('Francés') || txt.startsWith('Euskera')) {
-          txt.split(',').forEach(i => idiomas.push(i.trim()));
+      // Idiomas
+      let idiomas = '';
+      $('h2').each((i, el) => {
+        if ($(el).text().trim() === 'Idiomas') {
+          idiomas = $(el).next('p').text().trim();
         }
       });
 
-      return res.status(200).json({ nombre, foto, categoria, descripcion, telefonos, email, areas, idiomas });
+      // Formación
+      let formacion = '';
+      $('h2').each((i, el) => {
+        if ($(el).text().trim() === 'Formación') {
+          formacion = $(el).next('p').text().trim();
+        }
+      });
+
+      return res.status(200).json({ nombre, foto, categoria, descripcion, telefonos, email, areas, idiomas, formacion });
     } catch (error) {
       return res.status(500).json({ error: 'Error al obtener el perfil' });
     }
