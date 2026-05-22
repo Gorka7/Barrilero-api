@@ -20,10 +20,17 @@ module.exports = async (req, res) => {
       const foto = $('meta[property="og:image"]').attr('content') || '';
 
       // Categoría: primer li con texto en mayúsculas corto
+      // Categoría: li en mayúsculas excluyendo ES y EN del menú de idiomas
+      const EXCLUIR = ['ES', 'EN', 'ENGLISH', 'ESPAÑOL'];
       let categoria = '';
       $('li').each((i, el) => {
         const txt = $(el).text().trim();
-        if (txt.length > 0 && txt.length < 30 && txt === txt.toUpperCase() && /^[A-ZÁÉÍÓÚÑ\s]+$/.test(txt)) {
+        if (
+          txt.length > 2 && txt.length < 30 &&
+          txt === txt.toUpperCase() &&
+          /^[A-ZÁÉÍÓÚÑ\s]+$/.test(txt) &&
+          !EXCLUIR.includes(txt)
+        ) {
           if (!categoria) categoria = txt;
         }
       });
