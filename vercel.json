@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "functions": {
+    "api/equipo.js": {
+      "memory": 512,
+      "maxDuration": 15
+    }
+  }
+}
