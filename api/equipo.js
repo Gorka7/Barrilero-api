@@ -62,21 +62,34 @@ module.exports = async (req, res) => {
         if (area && area !== 'Áreas de práctica' && !areas.includes(area)) areas.push(area);
       });
 
-      // Idiomas
+     // Idiomas y Formación — buscar en h2 y también en strong/b
       let idiomas = '';
-      $('h2').each((i, el) => {
-        if ($(el).text().trim() === 'Idiomas') {
-          idiomas = $(el).next('p').text().trim();
+      let formacion = '';
+
+      $('h2, h3, strong, b').each((i, el) => {
+        const txt = $(el).text().trim();
+        if (txt === 'Idiomas' || txt === 'Idioma') {
+          const siguiente = $(el).parent().next().text().trim() ||
+                           $(el).next().text().trim() ||
+                           $(el).closest('li, p, div').next().text().trim();
+          if (siguiente && !idiomas) idiomas = siguiente;
+        }
+        if (txt === 'Formación' || txt === 'Formacion') {
+          const siguiente = $(el).parent().next().text().trim() ||
+                           $(el).next().text().trim() ||
+                           $(el).closest('li, p, div').next().text().trim();
+          if (siguiente && !formacion) formacion = siguiente;
         }
       });
 
-      // Formación
-      let formacion = '';
-      $('h2').each((i, el) => {
-        if ($(el).text().trim() === 'Formación') {
-          formacion = $(el).next('p').text().trim();
-        }
-      });
+      // Si no encontró, buscar por texto en párrafos
+      if (!idiomas || !formacion) {
+        const textoCompleto = $('body').text();
+        const idiomasMatch = textoCompleto.match(/Idiomas?\s*\n?\s*([^\n]+)/);
+        if (idiomasMatch && !idiomas) idiomas = idiomasMatch[1].trim();
+        const formacionMatch = textoCompleto.match(/Formaci[oó]n\s*\n?\s*([^\n]+)/);
+        if (formacionMatch && !formacion) formacion = formacionMatch[1].trim();
+      }
 
       return res.status(200).json({ nombre, foto, categoria, descripcion, telefonos, email, areas, idiomas, formacion });
     } catch (error) {
