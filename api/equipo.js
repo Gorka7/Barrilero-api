@@ -39,17 +39,7 @@ module.exports = async (req, res) => {
       const parrafos = [];
       $('p').each((i, el) => {
         const txt = $(el).text().trim();
-        if (
-          txt.length > 80 &&
-          !txt.includes('©') &&
-          !txt.includes('cookie') &&
-          !txt.includes('Privacy') &&
-          !txt.includes('Licenciatura') &&
-          !txt.includes('Universidad') &&
-          !txt.includes('Máster') &&
-          !txt.includes('Master') &&
-          !txt.includes('Grado en')
-        ) {
+        if (txt.length > 80 && !txt.includes('©') && !txt.includes('cookie') && !txt.includes('Privacy')) {
           parrafos.push(txt);
         }
       });
