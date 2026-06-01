@@ -8,38 +8,65 @@ const EQUIPO_URL = `${BASE_URL}/equipo/`;
 const OUTPUT_PATH = path.join(__dirname, '../data/equipo.json');
 const BATCH_SIZE = 10;
 
+const PALABRAS_EXCLUIR = [
+  'ENGLISH', 'ESPAÑOL', 'ES', 'EN', 'LA FIRMA', 'EQUIPO',
+  'ÁREAS DE PRÁCTICA', 'LEGAL ANGELS', 'INTERNATIONAL',
+  'ACTUALIDAD', 'TALENTO', 'SKIP TO CONTENT'
+];
+
 async function scrapeDetalle(url) {
   try {
     const { data } = await axios.get(url, { timeout: 15000 });
     const $ = cheerio.load(data);
 
-    // Categoría: está en un <li> solo, en mayúsculas, ANTES del primer <p> de biografía
+    // Categoría: primer <li> en mayúsculas que aparece justo después del h1
     let categoria = '';
-    $('article li, .entry-content li, main li').each((_, el) => {
-      const texto = $(el).text().trim();
+    const h1 = $('h1').first();
+    h1.nextAll('ul').first().find('li').each((_, el) => {
+      const texto = $(el).text().trim().toUpperCase();
       if (
-        /^[A-ZÁÉÍÓÚÜÑ\s\-\/]+$/.test(texto) &&
         texto.length > 2 &&
         texto.length < 50 &&
-        texto !== 'ENGLISH' &&
-        texto !== 'ESPAÑOL' &&
+        /^[A-ZÁÉÍÓÚÜÑ\s\-\/]+$/.test(texto) &&
+        !PALABRAS_EXCLUIR.includes(texto) &&
         !texto.includes('@') &&
-        !texto.includes('+')
+        !texto.includes('+') &&
+        !texto.includes('HTTP')
       ) {
         categoria = texto;
         return false;
       }
     });
 
-    // Área: está en el enlace que sigue al h2 "Área de práctica"
+    // Si no encontró nada tras h1, buscar en toda la página
+    if (!categoria) {
+      $('li').each((_, el) => {
+        const texto = $(el).text().trim().toUpperCase();
+        if (
+          texto.length > 2 &&
+          texto.length < 30 &&
+          /^[A-ZÁÉÍÓÚÜÑ\s\-\/]+$/.test(texto) &&
+          !PALABRAS_EXCLUIR.includes(texto) &&
+          !texto.includes('@') &&
+          !texto.includes('+')
+        ) {
+          categoria = texto;
+          return false;
+        }
+      });
+    }
+
+    // Área: buscar h2 que contenga "Área de práctica" y coger el enlace siguiente
     let area = '';
-    $('h2, h3').each((_, el) => {
-      const titulo = $(el).text().trim().toLowerCase();
-      if (titulo.includes('área') && titulo.includes('práctica')) {
-        const siguiente = $(el).next();
-        area = siguiente.find('a').first().text().trim() ||
-               siguiente.text().trim() ||
-               $(el).nextAll('a').first().text().trim();
+    $('h2').each((_, el) => {
+      const texto = $(el).text().trim().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (texto.includes('area') && texto.includes('practica')) {
+        // El enlace puede estar en un <p> o <div> siguiente, o directamente
+        const nextEl = $(el).next();
+        area = nextEl.find('a').first().text().trim() ||
+               nextEl.text().trim() ||
+               $(el).nextAll('a[href*="areas_de_practica"]').first().text().trim();
         return false;
       }
     });
