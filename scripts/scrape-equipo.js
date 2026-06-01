@@ -13,19 +13,33 @@ async function scrapeDetalle(url) {
     const { data } = await axios.get(url, { timeout: 15000 });
     const $ = cheerio.load(data);
 
+    // Categoría: está en un <li> solo, en mayúsculas, ANTES del primer <p> de biografía
     let categoria = '';
-    $('li').each((_, el) => {
+    $('article li, .entry-content li, main li').each((_, el) => {
       const texto = $(el).text().trim();
-      if (/^[A-ZÁÉÍÓÚÜÑ\s\-]+$/.test(texto) && texto.length > 2 && texto.length < 40) {
+      if (
+        /^[A-ZÁÉÍÓÚÜÑ\s\-\/]+$/.test(texto) &&
+        texto.length > 2 &&
+        texto.length < 50 &&
+        texto !== 'ENGLISH' &&
+        texto !== 'ESPAÑOL' &&
+        !texto.includes('@') &&
+        !texto.includes('+')
+      ) {
         categoria = texto;
         return false;
       }
     });
 
+    // Área: está en el enlace que sigue al h2 "Área de práctica"
     let area = '';
-    $('h2').each((_, el) => {
-      if ($(el).text().trim().toLowerCase().includes('área de práctica')) {
-        area = $(el).next('a').text().trim() || $(el).nextAll('a').first().text().trim();
+    $('h2, h3').each((_, el) => {
+      const titulo = $(el).text().trim().toLowerCase();
+      if (titulo.includes('área') && titulo.includes('práctica')) {
+        const siguiente = $(el).next();
+        area = siguiente.find('a').first().text().trim() ||
+               siguiente.text().trim() ||
+               $(el).nextAll('a').first().text().trim();
         return false;
       }
     });
