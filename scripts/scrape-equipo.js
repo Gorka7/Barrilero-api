@@ -5,45 +5,51 @@ const path = require('path');
 
 const BASE_URL = 'https://www.barrilero.com';
 const EQUIPO_URL = `${BASE_URL}/equipo/`;
+const AREAS_URL = `${BASE_URL}/areas_de_practica/`;
 const OUTPUT_PATH = path.join(__dirname, '../data/equipo.json');
-const BATCH_SIZE = 10;
 
-async function scrapeDetalle(url) {
-  try {
-    const { data } = await axios.get(url, { timeout: 15000 });
-    const $ = cheerio.load(data);
+const AREAS = [
+  'civil', 'compliance-y-gobierno-corporativo', 'concursal-e-insolvencia',
+  'corporate-ma', 'deportivo', 'inmobiliario', 'internacional', 'laboral',
+  'medioambiente', 'mercantil', 'penal',
+  'private-wealth-financiero-y-mercado-de-capitales',
+  'propiedad-intelectual-media-e-it', 'publico', 'resolucion-de-conflictos',
+  'seguridad-social', 'societario', 'tributario', 'urbanismo'
+];
 
-    // LOG: ver todos los li que hay en la página
-    const todosLi = [];
-    $('li').each((_, el) => {
-      const texto = $(el).text().trim();
-      if (texto.length < 60) todosLi.push(texto);
-    });
-    console.log('LIs en', url.split('/equipo/')[1], ':', JSON.stringify(todosLi.slice(0, 20)));
+async function construirMapaAreas() {
+  console.log('Construyendo mapa de áreas...');
+  const mapa = {}; // { urlPerfil: nombreArea }
 
-    // Área
-    let area = '';
-    $('h2').each((_, el) => {
-      const texto = $(el).text().trim().toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      if (texto.includes('area') && texto.includes('practica')) {
-        const nextEl = $(el).next();
-        area = nextEl.find('a').first().text().trim() ||
-               nextEl.text().trim() ||
-               $(el).nextAll('a[href*="areas_de_practica"]').first().text().trim();
-        return false;
-      }
-    });
+  await Promise.all(AREAS.map(async (area) => {
+    try {
+      const nombreArea = area
+        .replace(/-/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
 
-    return { categoria: '', area };
-  } catch {
-    return { categoria: '', area: '' };
-  }
+      const { data } = await axios.get(`${AREAS_URL}${area}/`, { timeout: 15000 });
+      const $ = cheerio.load(data);
+
+      $('a[href*="/equipo/"]').each((_, el) => {
+        const href = $(el).attr('href');
+        if (href && href.includes('/equipo/') && href !== EQUIPO_URL) {
+          mapa[href] = nombreArea;
+        }
+      });
+
+      console.log(`✓ Área ${nombreArea}`);
+    } catch (e) {
+      console.log(`✗ Error en área ${area}: ${e.message}`);
+    }
+  }));
+
+  return mapa;
 }
 
 async function main() {
   console.log('Iniciando scraping del equipo Barrilero...');
 
+  // 1. Obtener listado de profesionales
   const { data } = await axios.get(EQUIPO_URL, { timeout: 15000 });
   const $ = cheerio.load(data);
 
@@ -63,22 +69,19 @@ async function main() {
     }
   });
 
-  // Para el diagnóstico solo procesamos los 3 primeros
-  const linksPrueba = links.slice(0, 3);
-  console.log(`Probando con ${linksPrueba.length} profesionales...`);
+  console.log(`Encontrados ${links.length} profesionales.`);
 
-  const profesionales = [];
-  for (let i = 0; i < linksPrueba.length; i += BATCH_SIZE) {
-    const lote = linksPrueba.slice(i, i + BATCH_SIZE);
-    const resultados = await Promise.all(
-      lote.map(async p => {
-        const { categoria, area } = await scrapeDetalle(p.url);
-        return { ...p, categoria, area };
-      })
-    );
-    profesionales.push(...resultados);
-  }
+  // 2. Construir mapa de áreas (solo 19 peticiones)
+  const mapaAreas = await construirMapaAreas();
 
+  // 3. Combinar datos
+  const profesionales = links.map(p => ({
+    ...p,
+    area: mapaAreas[p.url] || '',
+    categoria: ''
+  }));
+
+  // 4. Guardar
   if (!fs.existsSync(path.dirname(OUTPUT_PATH))) {
     fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   }
