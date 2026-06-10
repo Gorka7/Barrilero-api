@@ -193,7 +193,7 @@
       "nombre": "María García",
       "url": "https://www.barrilero.com/equipo/maria-garcia/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -242,7 +242,7 @@
       "nombre": "María Barturen",
       "url": "https://www.barrilero.com/equipo/maria-barturen/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -291,7 +291,7 @@
       "nombre": "José Ramón Mínguez",
       "url": "https://www.barrilero.com/equipo/jose-ramon-minguez/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -368,7 +368,7 @@
       "nombre": "Marita Dargallo",
       "url": "https://www.barrilero.com/equipo/marita-dargallo/",
       "foto": "",
-      "area": "Deportivo",
+      "area": "Mercantil",
       "categoria": ""
     },
     {
@@ -452,14 +452,14 @@
       "nombre": "Cristina Rodríguez",
       "url": "https://www.barrilero.com/equipo/cristina-rodriguez/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
       "nombre": "Marta Puig",
       "url": "https://www.barrilero.com/equipo/marta-puig/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -969,13 +969,6 @@
     {
       "nombre": "Enrique Álvarez de la Gala",
       "url": "https://www.barrilero.com/equipo/enrique-alvarez-de-la-gala-abellan/",
-      "foto": "",
-      "area": "",
-      "categoria": ""
-    },
-    {
-      "nombre": "María Bernabeu",
-      "url": "https://www.barrilero.com/equipo/ma-antonia-bernabeu-cruz/",
       "foto": "",
       "area": "",
       "categoria": ""
