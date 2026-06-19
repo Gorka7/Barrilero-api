@@ -165,14 +165,14 @@
       "nombre": "Gonzalo Grijelmo",
       "url": "https://www.barrilero.com/equipo/gonzalo-grijelmo/",
       "foto": "",
-      "area": "Deportivo",
+      "area": "Civil",
       "categoria": ""
     },
     {
       "nombre": "Roberto Giralt",
       "url": "https://www.barrilero.com/equipo/roberto-giralt/",
       "foto": "",
-      "area": "Civil",
+      "area": "Inmobiliario",
       "categoria": ""
     },
     {
@@ -193,7 +193,7 @@
       "nombre": "María García",
       "url": "https://www.barrilero.com/equipo/maria-garcia/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -242,7 +242,7 @@
       "nombre": "María Barturen",
       "url": "https://www.barrilero.com/equipo/maria-barturen/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -291,7 +291,7 @@
       "nombre": "José Ramón Mínguez",
       "url": "https://www.barrilero.com/equipo/jose-ramon-minguez/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -319,7 +319,7 @@
       "nombre": "Elisa Lemus",
       "url": "https://www.barrilero.com/equipo/elisa-lemus/",
       "foto": "",
-      "area": "Internacional",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -375,7 +375,7 @@
       "nombre": "Elvira Cuxart",
       "url": "https://www.barrilero.com/equipo/elvira-cuxart/",
       "foto": "",
-      "area": "Civil",
+      "area": "Inmobiliario",
       "categoria": ""
     },
     {
@@ -389,7 +389,7 @@
       "nombre": "Zuriñe Castillo",
       "url": "https://www.barrilero.com/equipo/zurine-castillo/",
       "foto": "",
-      "area": "Compliance y Gobierno Corporativo",
+      "area": "Concursal e Insolvencia",
       "categoria": ""
     },
     {
@@ -452,14 +452,14 @@
       "nombre": "Cristina Rodríguez",
       "url": "https://www.barrilero.com/equipo/cristina-rodriguez/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
       "nombre": "Marta Puig",
       "url": "https://www.barrilero.com/equipo/marta-puig/",
       "foto": "",
-      "area": "Laboral",
+      "area": "Seguridad Social",
       "categoria": ""
     },
     {
@@ -480,7 +480,7 @@
       "nombre": "Eduardo Martin",
       "url": "https://www.barrilero.com/equipo/eduardo-martin/",
       "foto": "",
-      "area": "Corporate M&A",
+      "area": "Medioambiente",
       "categoria": ""
     },
     {
@@ -1002,6 +1002,13 @@
       "categoria": ""
     },
     {
+      "nombre": "Guillem Gallart",
+      "url": "https://www.barrilero.com/equipo/guillem-gallart/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
       "nombre": "Romina García",
       "url": "https://www.barrilero.com/equipo/romina-garcia/",
       "foto": "",
@@ -1011,6 +1018,13 @@
     {
       "nombre": "María Gómez-Etxebarría",
       "url": "https://www.barrilero.com/equipo/maria-gomez-etxebarria-gutierrez/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Iñigo González de Echávarri",
+      "url": "https://www.barrilero.com/equipo/inigo-gonzalez-de-echavarri/",
       "foto": "",
       "area": "",
       "categoria": ""
@@ -1102,6 +1116,13 @@
     {
       "nombre": "Gabriel Salarich",
       "url": "https://www.barrilero.com/equipo/gabriel-salarich/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Martina Serna",
+      "url": "https://www.barrilero.com/equipo/martina-serna/",
       "foto": "",
       "area": "",
       "categoria": ""
