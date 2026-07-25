@@ -193,7 +193,7 @@
       "nombre": "María García",
       "url": "https://www.barrilero.com/equipo/maria-garcia/",
       "foto": "",
-      "area": "Seguridad Social",
+      "area": "Laboral",
       "categoria": ""
     },
     {
@@ -242,7 +242,7 @@
       "nombre": "María Barturen",
       "url": "https://www.barrilero.com/equipo/maria-barturen/",
       "foto": "",
-      "area": "Seguridad Social",
+      "area": "Laboral",
       "categoria": ""
     },
     {
@@ -291,7 +291,7 @@
       "nombre": "José Ramón Mínguez",
       "url": "https://www.barrilero.com/equipo/jose-ramon-minguez/",
       "foto": "",
-      "area": "Seguridad Social",
+      "area": "Laboral",
       "categoria": ""
     },
     {
@@ -312,7 +312,7 @@
       "nombre": "Jorge Llevat",
       "url": "https://www.barrilero.com/equipo/jorge-llevat/",
       "foto": "",
-      "area": "Propiedad Intelectual, Media e IT",
+      "area": "Mercantil",
       "categoria": ""
     },
     {
@@ -368,7 +368,7 @@
       "nombre": "Marita Dargallo",
       "url": "https://www.barrilero.com/equipo/marita-dargallo/",
       "foto": "",
-      "area": "Propiedad Intelectual, Media e IT",
+      "area": "Deportivo",
       "categoria": ""
     },
     {
@@ -389,7 +389,7 @@
       "nombre": "Zuriñe Castillo",
       "url": "https://www.barrilero.com/equipo/zurine-castillo/",
       "foto": "",
-      "area": "Concursal e Insolvencia",
+      "area": "Compliance y Gobierno Corporativo",
       "categoria": ""
     },
     {
@@ -403,7 +403,7 @@
       "nombre": "Martin Bilbao",
       "url": "https://www.barrilero.com/equipo/martin-bilbao/",
       "foto": "",
-      "area": "Penal",
+      "area": "Compliance y Gobierno Corporativo",
       "categoria": ""
     },
     {
@@ -438,7 +438,7 @@
       "nombre": "Eduardo Tejero",
       "url": "https://www.barrilero.com/equipo/eduardo-tejero/",
       "foto": "",
-      "area": "Corporate M&A",
+      "area": "Compliance y Gobierno Corporativo",
       "categoria": ""
     },
     {
@@ -452,14 +452,14 @@
       "nombre": "Cristina Rodríguez",
       "url": "https://www.barrilero.com/equipo/cristina-rodriguez/",
       "foto": "",
-      "area": "Seguridad Social",
+      "area": "Laboral",
       "categoria": ""
     },
     {
       "nombre": "Marta Puig",
       "url": "https://www.barrilero.com/equipo/marta-puig/",
       "foto": "",
-      "area": "Seguridad Social",
+      "area": "Laboral",
       "categoria": ""
     },
     {
@@ -1060,6 +1060,13 @@
     {
       "nombre": "Sergio Montero Formoso",
       "url": "https://www.barrilero.com/equipo/sergio-montero-formoso/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Santiago Morán",
+      "url": "https://www.barrilero.com/equipo/santiago-moran/",
       "foto": "",
       "area": "",
       "categoria": ""
