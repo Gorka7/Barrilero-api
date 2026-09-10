@@ -22,8 +22,29 @@
       "categoria": ""
     },
     {
+      "nombre": "Esperanza Cigaran",
+      "url": "https://www.barrilero.com/equipo/esperanza-cigaran/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Gonzalo Cuervo",
+      "url": "https://www.barrilero.com/equipo/gonzalo-cuervo/",
+      "foto": "",
+      "area": "Corporate M&A",
+      "categoria": ""
+    },
+    {
       "nombre": "Cristina Delgado",
       "url": "https://www.barrilero.com/equipo/cristina-delgado/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Joanna Eguiraun",
+      "url": "https://www.barrilero.com/equipo/joanna-eguiraun/",
       "foto": "",
       "area": "",
       "categoria": ""
@@ -85,6 +106,13 @@
       "categoria": ""
     },
     {
+      "nombre": "Marta Ibarrola",
+      "url": "https://www.barrilero.com/equipo/marta-ibarrola/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
       "nombre": "Helena López",
       "url": "https://www.barrilero.com/equipo/helena-lopez/",
       "foto": "",
@@ -134,8 +162,22 @@
       "categoria": ""
     },
     {
+      "nombre": "Ane Moreno",
+      "url": "https://www.barrilero.com/equipo/ane-moreno-2/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
       "nombre": "Irati Oleaga",
       "url": "https://www.barrilero.com/equipo/irati-oleaga-colio/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Laura Ortiz Lluveras",
+      "url": "https://www.barrilero.com/equipo/laura-ortiz-lluveras/",
       "foto": "",
       "area": "",
       "categoria": ""
@@ -190,8 +232,22 @@
       "categoria": ""
     },
     {
+      "nombre": "María Sánchez-Casas",
+      "url": "https://www.barrilero.com/equipo/maria-sanchez-casas-2/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
       "nombre": "Martina Serna",
       "url": "https://www.barrilero.com/equipo/martina-serna/",
+      "foto": "",
+      "area": "",
+      "categoria": ""
+    },
+    {
+      "nombre": "Leyre Taboada",
+      "url": "https://www.barrilero.com/equipo/leyre-taboada/",
       "foto": "",
       "area": "",
       "categoria": ""
@@ -690,7 +746,7 @@
       "nombre": "Eduardo Tejero",
       "url": "https://www.barrilero.com/equipo/eduardo-tejero/",
       "foto": "",
-      "area": "Compliance y Gobierno Corporativo",
+      "area": "Corporate M&A",
       "categoria": ""
     },
     {
@@ -732,7 +788,7 @@
       "nombre": "Zuriñe Castillo",
       "url": "https://www.barrilero.com/equipo/zurine-castillo/",
       "foto": "",
-      "area": "Compliance y Gobierno Corporativo",
+      "area": "Mercantil",
       "categoria": ""
     },
     {
@@ -753,7 +809,7 @@
       "nombre": "Marita Dargallo",
       "url": "https://www.barrilero.com/equipo/marita-dargallo/",
       "foto": "",
-      "area": "Deportivo",
+      "area": "Mercantil",
       "categoria": ""
     },
     {
